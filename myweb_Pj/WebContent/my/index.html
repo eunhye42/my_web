@@ -4,14 +4,22 @@
 </head>
 <body>
 <div id="app">
-	<input type="text" id="user_id" v-model="userId">
+	/*<input type="text" id="user_id" v-model="userId">
 	<input type="password" id="user_pwd" v-model="userPwd>
 	//<button type="button" onclick="login()">로그인</button>
 	<button type="button">로그인</button>
 	<br />
 	아이디 : {{ userId }}
 	<br />
-	비밀번호 : {{ userPwd }}
+	비밀번호 : {{ userPwd }} */
+	<ul style="list-style: none;">
+	    <template v-for="item in items">
+	      <li><img :src="item.image">
+	      </li>
+	      <li> {{ item.title }}
+	      </li>
+	    </template>
+	</ul>
 </div>
 <script src=""></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -20,8 +28,35 @@
 		el: '#app',
 		data() {
 			return {
-				userId: '',
-				userPwd: ''
+				//userId: '',
+				//userPwd: ''
+				items: [
+				    {
+					id: 1,
+					image: 'https://picsum.photos/210/118/?image=1',
+					title: '컴퓨터'
+				    },
+				    {
+					id: 2,
+					image: 'https://picsum.photos/210/118/?image=100',
+					title: '해변'
+				    }
+				    {
+					id: 3,
+					image: 'https://picsum.photos/210/118/?image=100',
+					title: '해변'
+				    }
+				    {
+					id: 4,
+					image: 'https://picsum.photos/210/118/?image=100',
+					title: '해변'
+				    }
+				    {
+					id: 5,
+					image: 'https://picsum.photos/210/118/?image=100',
+					title: '해변'
+				    }
+				]
 			}
 		}
 	})
