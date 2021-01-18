@@ -1,0 +1,52 @@
+  * Git 저장소 만들기 *
+*원격 저장소 (Remote Repository): 파일이 원격 저장소 전용 서버에서 관리되며 여러사람이 함께 공유하기 위한 저장소
+*로컬 저장소 (Local Repository): 내 PC에 파일이 저장되는 개인 전용 저장소
+
+  * 내 컴퓨터에 로컬저장소를 만드는 방법 2가지 *
+#1. 아예 저장소를 새로 만들기
+- mkdir <new folder name> 폴더 생섯
+- cd <new folder name> 프로젝트 디렉토리로 들어감.
+- git init 새 repository 생성. git 폴더를 만든다.
+
+#2. 이미 만들어져 있는 원격 저장소를 로컬 저장소로 복사
+* git clone <url>
+=> ex) git clone https://github.com/mygit/git1
+- git1 이라는 이름의 "로컬 폴더" 생성 후 내용 복제.
+- 이때, 같은 이름의 폴더가 이미 있으면 오류 발생.
+
+* git clone <url> <name>
+=> ex) git clone https://github.com/mygit/git1 git_2
+- url폴더 이름(git1)이 아닌 다른 이름(git_2)으로 "로컬 폴더" 생성 후 내용 복제.
+
+* Subversion과 가장 큰 차이점 서버에 있는 거의 모든 데이터를 복사한다는 것.
+- 프로젝트 히스토리를 전부 받아온다.
+- 실제로 서버의 디스크가 망가져도 클라이언트 저장소 중에서 아무거나 하나 가져다가 복구하면 됨.
+- 모든 데이터는 복구 되지만, 서버에만 적용했던 설정은 복구하지 못함.
+
+* url 프로토콜
+- https://
+- git://
+- SSH (user@server:path/to/repo.git)
+
+* vim editor 명령어
+- i => 내용을 입력(insert)
+- esc => 편집 모드 종료
+- :wq => 저장하고 종료(write and quit)
+
+* git status -> project folder 의 상태를 확인
+* git add <file> -> 수정한 파일을 Stage상태로 만듦
+* git commit -> 파일 및 폴더의 추가/변경 사항을 로컬 저장소에 기록
+-> editor에 commit message 입력 필수 (1번째 줄: 변경내용 요약 / 2번째 줄: 빈 칸 / 3번째 줄: 변경한 이유)
+* git commit -m "commit message" -> 에디터 열지않고 커밋 메세지 입력
+* git commit -a -m "added new bench" -> Tracked 상태(이전에 한번이라도 add 된 파일)를 자동으로 Staging Area에 넣음.
+
+* git rm <file> -> Staging Area 에서 파일 삭제, 하드디스크에서도 삭제됨
+- Working Directory에서 지우면 Unstaged됨. 파일이 지워졌다는 내용을 다시 stage하고 commit해야 함.
+- git rm으로 지우면 지웠다는 내용이 Staged되므로 commit만 하면 됨.
+- $ git rm log/\\*.log -> 디렉토리에 있는 .log파일을 모두 삭제(file-glob패턴_?)
+- $ git rm \*~ -> ~로 끝나는 파일을 모두 삭제
+- 이미 파일을 수정했거나 Staging Area에 추가했다면 -f 옵션을 주어 강제로 삭제하기
+
+* git rm --cached <file> -> 하드디스크에는 파일을 남기고 Git 추적만 안하도록 하는 것
+* 프로젝트 폴더를 아예 삭제하려면 Working Tree에서 프로젝트 폴더를 통채로 삭제. git rm은 git 디렉토리가 있는 폴더에서만 동작하므로 프로젝트 폴더내의 파일/디렉토리만 지울 수 있다.
+* git mv <file_from> <file_to> -> 파일 이름을 변경
